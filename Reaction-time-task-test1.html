@@ -43,7 +43,7 @@
         <p>There will be 1 practice block and 2 actual blocks in total. </p> 
         <p> <strong> The faster you respond, the higher your points will be. The slower you respond, the lower your 
         points will be. </strong> </p> <p> You can earn up to 65 points in each block. </p>
-         <p><strong>Gain 100 points over 2 blocks and you will win $20.</strong></p>
+         <p><strong>Gain 100 points at then end of of the task and you will win $20.</strong></p>
         
         <p>Press any key to begin.</p> 
       `,
@@ -135,7 +135,7 @@
     var block_1_score = {
       type: "html-keyboard-response",
       stimulus: `
-        <p>Your total points is 58. </p>
+        <p>Your cumulative points is <strong> 58 </strong>. </p>
         <p>Next, we shall take a break before starting block 2.</p> 
       `,
       choices: jsPsych.NO_KEYS,
@@ -149,7 +149,7 @@
           stimulus: `
             <p>It is time to take a break. We will have a break for 1 minute before continuing</p>
             <p>Your current score is <strong> 58 </strong></p>
-            <p>Get 100 points and you will win $20. </p>`
+            <p>Get 100 points at the end and you will win $20. </p>`
             ,
             
           choices: jsPsych.NO_KEYS,
@@ -188,7 +188,7 @@
     var block_2_score = {
       type: "html-keyboard-response",
       stimulus: `
-        <p>Your total points is now 26 </p>
+        <p>Your cumulative points is now <strong> 26 </strong> </p>
         <p>Sorry, but you do not get the cash reward.</p>
         <p>Please do not close this window</p> 
       `,
