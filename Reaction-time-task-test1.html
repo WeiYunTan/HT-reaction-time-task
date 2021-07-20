@@ -17,7 +17,7 @@
     /* preload images */
     var preload = {
       type: 'preload',
-      images: ['img/redX.png'] /*change this to name of the red x */
+      images: ['img/redX.png',] /*change this to name of the red x */
     }
     timeline.push(preload);
 
@@ -43,7 +43,7 @@
         <p>There will be 1 practice block and 2 actual blocks in total. </p> 
         <p> <strong> The faster you respond, the higher your points will be. The slower you respond, the lower your 
         points will be. </strong> </p> <p> You can earn up to 65 points in each block. </p>
-         <p><strong>Gain 100 points at then end of of the task and you will win $20.</strong></p>
+         <p><strong>Gain 100 points at the end of the task and you will win $20.</strong></p>
         
         <p>Press any key to begin.</p> 
       `,
@@ -95,12 +95,34 @@
         data.correct = jsPsych.pluginAPI.compareKeys(data.response, data.correct_response);
       }
     }
-/* include the part about max points per block of trial as per Koh et al????
-*/
+
+    /* guided response trial */
+    var guided_test= {
+      type:"image-keyboard-response",
+      stimulus: jsPsych.timelineVariable('stimulus'),
+      choices: [' '],
+      prompt:` <div style='width: 1000px;'>
+        <div style='middle'> <strong><p>Press the spacebar key</p></strong>`,
+      data: {
+        task: 'response',
+        correct_response: jsPsych.timelineVariable('correct_response')
+      },
+      on_finish: function(data){
+        data.correct = jsPsych.pluginAPI.compareKeys(data.response, data.correct_response);
+      }
+    }
+    
+
+    var guided_trial = {
+      timeline: [fixation, guided_test],
+      timeline_variables: test_stimuli,
+    }        
+    timeline.push(guided_trial);
+
      var practice_trial = {
       timeline: [fixation, test],
       timeline_variables: test_stimuli,
-      repetitions: 5,
+      repetitions: 4,
       randomize_order: true
     }
     timeline.push(practice_trial);
@@ -144,6 +166,7 @@
     timeline.push(block_1_score);
 
 /*add in a break section over here */
+
     var break_screen = {
           type: "html-keyboard-response",
           stimulus: `
@@ -153,7 +176,7 @@
             ,
             
           choices: jsPsych.NO_KEYS,
-          trial_duration: 60000, 
+          trial_duration: 20000 /*60000 */, 
           
         };
         timeline.push(break_screen);
@@ -244,9 +267,10 @@
     /* start the experiment */
     jsPsych.init({
       timeline: timeline,
-      on_finish: function() { /*change this on finish to something else. See if I can find a way to go back to qualtrics or not */
+      on_finish: function() { /*change this on finish to something else. See if I can find a way to go back to qualtrics or not*/ 
         jsPsych.data.displayData();
       }
-    });
+    }); 
+   
   </script>
 </html>
