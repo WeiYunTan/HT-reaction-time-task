@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Reaction time task</title>
+    <script src="jspsych-6.3.1/jspsych.js"></script>
+    <script src="jspsych-6.3.1/plugins/jspsych-html-keyboard-response.js"></script>
+    <script src="jspsych-6.3.1/plugins/jspsych-image-keyboard-response.js"></script>
+    <script src="jspsych-6.3.1/plugins/jspsych-preload.js"></script>
+    <link href="jspsych-6.3.1/css/jspsych.css" rel="stylesheet" type="text/css">
+  </head>
+  <body></body>
+  
+  <!-- CHANGE: Loading the external main experiment script -->
+    <script src="Reaction-time-task-1.js"></script> 
+
+  <script>
+  /* apparently, I need to separate out the experiment, and operation related codes... 
+  shall see whether I can grasp it or not. */
+
+   /* will need to add in the process of randomly appearing stimulus */ 
+
+    /* define debrief */ /*I don't think I need this page*/
+    /*
+    var debrief_block = {
+      type: "html-keyboard-response",
+      stimulus: function() {
+
+        var trials = jsPsych.data.get().filter({task: 'response'});
+        var correct_trials = trials.filter({correct: true});
+        var accuracy = Math.round(correct_trials.count() / trials.count() * 100);
+        var rt = Math.round(correct_trials.select('rt').mean());
+
+        return `<p>You responded correctly on ${accuracy}% of the trials.</p>
+          <p>Your average response time was ${rt}ms.</p>
+          <p>Press any key to complete the experiment. Thank you!</p>`;
+
+      }
+    };
+    timeline.push(debrief_block); */
+
+      /*my timeline will be something like this: 
+        1. instruction page and message about points and monetary reward
+        2. instruction for practice trial. press spacebar to begin practice trial 
+        3. practice trial (5 runs)
+        4. end of practice trial page start of first block. Press spacebar to proceed 
+        5. First block of trials. 10 runs 
+        6. show the fictitious points gained by participant : 58 points
+        7. intermission screen. Shows the current 58 points. Need to gain 100 to have the money reward 
+        7a. possibly see if I can do a delay of 1 minute then move on to the next screen
+        8. start of second trial. Press spacebar to proceed.
+        9. Second trial block. 10 runs 
+        10. End of second trial. show fictitious points participant has: 26 points
+        11. Then this is where I need to see if can go back to qualtrics with the next button from qualtrics.  
+
+      For the full code, will have to do 5 practice trial, then 10 first block,
+      then a point score
+      Then a break screen
+      Then second block
+      then final screen
+      
+      But essentially I can try to push this code out to GitHub and to Qualtrics first, just to see what it does 
+      
+
+
+    /* start the experiment */
+    jsPsych.init({
+      timeline: timeline,
+      on_finish: function() { /*change this on finish to something else. See if I can find a way to go back to qualtrics or not*/ 
+        jsPsych.data.displayData();
+      }
+    }); 
+   
+  </script>
+
+</html>
